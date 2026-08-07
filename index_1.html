@@ -26,6 +26,15 @@
     .grid-4{grid-template-columns:1fr !important;}
     .footer-grid{grid-template-columns:1fr !important;}
   }
+  @keyframes fadeUp{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes letterIn{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  @keyframes ctaPulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.035);}}
+  @keyframes marqueeScroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  .js-hero-title .letter{display:inline-block; opacity:0; animation:letterIn .5s ease forwards;}
+  .cta-final-btn:hover{box-shadow:0 0 30px 6px rgba(184,134,91,0.5);}
+  .js-marquee-track{display:flex; width:max-content; animation:marqueeScroll 22s linear infinite;}
+  #navInner{max-width:1180px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px 32px; transition:padding .3s ease;}
+  #navInner.scrolled{padding:10px 32px;}
 </style>
 </head>
 <body>
@@ -34,7 +43,7 @@
 
   <!-- NAVBAR -->
   <header style="position:sticky; top:0; z-index:50; background:rgba(26,22,19,0.95); backdrop-filter:blur(6px); border-bottom:1px solid rgba(184,134,91,0.25);">
-    <div style="max-width:1180px; margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+    <div id="navInner">
       <a href="#accueil" style="font-family:'Bevan',serif; font-weight:400; font-size:22px; color:#B8865B; text-decoration:none; letter-spacing:0.02em;">Corte &amp; Co.</a>
       <nav style="display:flex; align-items:center; gap:26px; flex-wrap:wrap;">
         <a href="#services" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Prestations</a>
@@ -42,24 +51,24 @@
         <a href="#equipe" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Équipe</a>
         <a href="#avis" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Avis</a>
         <a href="#localisation" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Localisation</a>
-        <a href="https://wa.me/33612345678" target="_blank" rel="noopener" style="text-decoration:none; background:#6B2B2B; color:#F0E6D8; padding:10px 20px; border-radius:2px; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase;">Prendre RDV</a>
+        <a href="https://wa.me/33612345678" target="_blank" rel="noopener" class="js-magnetic" style="text-decoration:none; background:#6B2B2B; color:#F0E6D8; padding:10px 20px; border-radius:2px; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase; display:inline-block; transition:transform .2s ease, box-shadow .3s ease;">Prendre RDV</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
   <section id="accueil" style="position:relative; padding:100px 32px 84px; max-width:1180px; margin:0 auto; overflow:hidden;">
-    <div style="position:absolute; top:-30px; right:4%; width:180px; height:180px; border-radius:50%; overflow:hidden; opacity:0.35; transform:rotate(20deg);">
+    <div class="js-parallax" data-speed="0.15" style="position:absolute; top:-30px; right:4%; width:180px; height:180px; border-radius:50%; overflow:hidden; opacity:0.35; transform:rotate(20deg); will-change:transform;">
       <div style="width:100%; height:100%; background:repeating-linear-gradient(45deg, #6B2B2B 0px, #6B2B2B 16px, #F0E6D8 16px, #F0E6D8 32px, #B8865B 32px, #B8865B 48px);"></div>
     </div>
     <div class="hero-grid" style="position:relative; z-index:1; display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;">
       <div class="hero-copy" style="display:flex; flex-direction:column; align-items:flex-start; gap:22px;">
-        <span style="font-family:'Archivo',sans-serif; font-weight:700; font-size:13px; color:#B8865B; letter-spacing:0.14em; text-transform:uppercase;">Barbershop traditionnel — Paris</span>
-        <h1 style="font-family:'Bevan',serif; font-weight:400; font-size:44px; line-height:1.2; margin:0; color:#F0E6D8;">L'art de la coupe, comme autrefois</h1>
-        <p style="font-size:16px; line-height:1.7; color:#D8C9B4; margin:0; max-width:460px;">Coupe précise, rasage au coupe-chou, savoir-faire transmis de génération en génération. Ici, on prend le temps de bien faire.</p>
-        <div class="hero-cta" style="display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;">
-          <a href="https://wa.me/33612345678" target="_blank" rel="noopener" style="text-decoration:none; background:#6B2B2B; color:#F0E6D8; padding:15px 28px; border-radius:2px; font-weight:600; font-size:14px; letter-spacing:0.03em; text-transform:uppercase;">Réserver via WhatsApp</a>
-          <a href="#services" style="text-decoration:none; background:transparent; color:#F0E6D8; padding:15px 28px; border-radius:2px; font-weight:600; font-size:14px; letter-spacing:0.03em; text-transform:uppercase; border:1.5px solid #B8865B;">Nos prestations</a>
+        <span style="font-family:'Archivo',sans-serif; font-weight:700; font-size:13px; color:#B8865B; letter-spacing:0.14em; text-transform:uppercase; opacity:0; animation:fadeUp .6s ease .1s both;">Barbershop traditionnel — Paris</span>
+        <h1 class="js-hero-title" style="font-family:'Bevan',serif; font-weight:400; font-size:44px; line-height:1.2; margin:0; color:#F0E6D8;">L'art de la coupe, comme autrefois</h1>
+        <p style="font-size:16px; line-height:1.7; color:#D8C9B4; margin:0; max-width:460px; opacity:0; animation:fadeUp .6s ease .6s both;">Coupe précise, rasage au coupe-chou, savoir-faire transmis de génération en génération. Ici, on prend le temps de bien faire.</p>
+        <div class="hero-cta" style="display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; opacity:0; animation:fadeUp .6s ease .9s both;">
+          <a href="https://wa.me/33612345678" target="_blank" rel="noopener" class="js-magnetic" style="text-decoration:none; background:#6B2B2B; color:#F0E6D8; padding:15px 28px; border-radius:2px; font-weight:600; font-size:14px; letter-spacing:0.03em; text-transform:uppercase; display:inline-block; transition:transform .2s ease, box-shadow .3s ease;">Réserver via WhatsApp</a>
+          <a href="#services" class="js-magnetic" style="text-decoration:none; background:transparent; color:#F0E6D8; padding:15px 28px; border-radius:2px; font-weight:600; font-size:14px; letter-spacing:0.03em; text-transform:uppercase; border:1.5px solid #B8865B; display:inline-block; transition:transform .2s ease, box-shadow .3s ease;">Nos prestations</a>
         </div>
       </div>
       <div style="position:relative;">
@@ -71,12 +80,20 @@
   </section>
 
   <!-- TRUST BAR -->
-  <section style="background:#6B2B2B; padding:40px 32px;">
+  <section class="js-trustbar" style="background:#6B2B2B; padding:40px 32px;">
     <div class="grid-4" style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:24px; text-align:center;">
-      <div><div style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">15 ans</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">de métier</div></div>
-      <div><div style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">20 000+</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">coupes réalisées</div></div>
-      <div><div style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">4.8/5</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">note Google</div></div>
-      <div><div style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">100%</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">rasage traditionnel</div></div>
+      <div><div class="js-counter" data-target="15" data-suffix=" ans" style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">15 ans</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">de métier</div></div>
+      <div><div class="js-counter" data-target="20000" data-suffix="+" style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">20 000+</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">coupes réalisées</div></div>
+      <div><div class="js-counter" data-target="4.8" data-suffix="/5" data-decimals="1" style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">4.8/5</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">note Google</div></div>
+      <div><div class="js-counter" data-target="100" data-suffix="%" style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8;">100%</div><div style="font-size:12px; color:#E4C9B8; margin-top:6px; letter-spacing:0.03em;">rasage traditionnel</div></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section style="overflow:hidden; padding:16px 0; background:#221D18; border-top:1px solid rgba(184,134,91,0.15); border-bottom:1px solid rgba(184,134,91,0.15);">
+    <div class="js-marquee-track">
+      <span style="white-space:nowrap; font-family:'Bevan',serif; font-size:15px; letter-spacing:0.12em; color:#B8865B; padding-right:24px;">COUPE · BARBE · RASAGE · TRADITION · COUPE · BARBE · RASAGE · TRADITION · COUPE · BARBE · RASAGE · TRADITION · </span>
+      <span style="white-space:nowrap; font-family:'Bevan',serif; font-size:15px; letter-spacing:0.12em; color:#B8865B; padding-right:24px;">COUPE · BARBE · RASAGE · TRADITION · COUPE · BARBE · RASAGE · TRADITION · COUPE · BARBE · RASAGE · TRADITION · </span>
     </div>
   </section>
 
@@ -87,22 +104,22 @@
       <h2 style="font-family:'Bevan',serif; font-weight:400; font-size:30px; color:#F0E6D8; margin:12px 0 0;">Un savoir-faire pour chaque visite</h2>
     </div>
     <div class="grid-4" style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
-      <div style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="width:44px; height:44px; background:rgba(107,43,43,0.35); display:flex; align-items:center; justify-content:center;"><div style="width:20px; height:20px; background:#B8865B; clip-path:polygon(50% 0%, 100% 100%, 0% 100%);"></div></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Coupe classique</h3>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0;">Coupe ciseaux ou tondeuse, dégradés nets, finitions soignées.</p>
       </div>
-      <div style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="width:44px; height:44px; background:rgba(107,43,43,0.35); display:flex; align-items:center; justify-content:center;"><div style="width:20px; height:20px; background:#B8865B;"></div></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Taille de barbe</h3>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0;">Structure, densité, forme adaptée à votre visage.</p>
       </div>
-      <div style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="width:44px; height:44px; background:rgba(107,43,43,0.35); display:flex; align-items:center; justify-content:center;"><div style="width:4px; height:22px; background:#B8865B; transform:rotate(30deg);"></div></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Rasage traditionnel</h3>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0;">Serviette chaude, coupe-chou, rituel complet à l'ancienne.</p>
       </div>
-      <div style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#221D18; border:1px solid rgba(184,134,91,0.2); padding:32px 24px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="width:44px; height:44px; background:rgba(107,43,43,0.35); display:flex; align-items:center; justify-content:center;"><div style="width:20px; height:20px; border-radius:50%; border:3px solid #B8865B;"></div></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Soins du visage</h3>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0;">Masque, contour des yeux, gommage — l'entretien qui suit le rasage.</p>
@@ -133,19 +150,19 @@
     </div>
     <div class="team-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;">
       <div style="display:flex; flex-direction:column; gap:14px; text-align:center; align-items:center;">
-        <div style="width:150px; height:150px; background:repeating-linear-gradient(135deg, rgba(107,43,43,0.3) 0px, rgba(107,43,43,0.3) 10px, rgba(184,134,91,0.06) 10px, rgba(184,134,91,0.06) 20px); border:1px solid rgba(184,134,91,0.25); display:flex; align-items:center; justify-content:center;"><span style="font-family:monospace; font-size:11px; color:#D8C9B4; opacity:0.8;">photo</span></div>
+        <div class="js-team-photo" style="width:150px; height:150px; background:repeating-linear-gradient(135deg, rgba(107,43,43,0.3) 0px, rgba(107,43,43,0.3) 10px, rgba(184,134,91,0.06) 10px, rgba(184,134,91,0.06) 20px); border:1px solid rgba(184,134,91,0.25); display:flex; align-items:center; justify-content:center; clip-path:inset(0 0 100% 0); transition:clip-path 1s cubic-bezier(0.65,0,0.35,1);"><span style="font-family:monospace; font-size:11px; color:#D8C9B4; opacity:0.8;">photo</span></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Marco Ferreira</h3>
         <div style="font-size:12.5px; color:#B8865B; font-weight:600; letter-spacing:0.03em; text-transform:uppercase;">Maître barbier, fondateur</div>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0; max-width:220px;">25 ans de métier, formé à Porto avant d'ouvrir la maison à Paris.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:14px; text-align:center; align-items:center;">
-        <div style="width:150px; height:150px; background:repeating-linear-gradient(135deg, rgba(184,134,91,0.25) 0px, rgba(184,134,91,0.25) 10px, rgba(107,43,43,0.06) 10px, rgba(107,43,43,0.06) 20px); border:1px solid rgba(184,134,91,0.25); display:flex; align-items:center; justify-content:center;"><span style="font-family:monospace; font-size:11px; color:#D8C9B4; opacity:0.8;">photo</span></div>
+        <div class="js-team-photo" style="width:150px; height:150px; background:repeating-linear-gradient(135deg, rgba(184,134,91,0.25) 0px, rgba(184,134,91,0.25) 10px, rgba(107,43,43,0.06) 10px, rgba(107,43,43,0.06) 20px); border:1px solid rgba(184,134,91,0.25); display:flex; align-items:center; justify-content:center; clip-path:inset(0 0 100% 0); transition:clip-path 1s cubic-bezier(0.65,0,0.35,1);"><span style="font-family:monospace; font-size:11px; color:#D8C9B4; opacity:0.8;">photo</span></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Junior Silva</h3>
         <div style="font-size:12.5px; color:#B8865B; font-weight:600; letter-spacing:0.03em; text-transform:uppercase;">Spécialiste rasage traditionnel</div>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0; max-width:220px;">Le rituel au coupe-chou n'a plus de secret pour lui.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:14px; text-align:center; align-items:center;">
-        <div style="width:150px; height:150px; background:repeating-linear-gradient(135deg, rgba(107,43,43,0.3) 0px, rgba(107,43,43,0.3) 10px, rgba(184,134,91,0.06) 10px, rgba(184,134,91,0.06) 20px); border:1px solid rgba(184,134,91,0.25); display:flex; align-items:center; justify-content:center;"><span style="font-family:monospace; font-size:11px; color:#D8C9B4; opacity:0.8;">photo</span></div>
+        <div class="js-team-photo" style="width:150px; height:150px; background:repeating-linear-gradient(135deg, rgba(107,43,43,0.3) 0px, rgba(107,43,43,0.3) 10px, rgba(184,134,91,0.06) 10px, rgba(184,134,91,0.06) 20px); border:1px solid rgba(184,134,91,0.25); display:flex; align-items:center; justify-content:center; clip-path:inset(0 0 100% 0); transition:clip-path 1s cubic-bezier(0.65,0,0.35,1);"><span style="font-family:monospace; font-size:11px; color:#D8C9B4; opacity:0.8;">photo</span></div>
         <h3 style="font-family:'Bevan',serif; font-weight:400; font-size:17px; color:#F0E6D8; margin:0;">Elias Traoré</h3>
         <div style="font-size:12.5px; color:#B8865B; font-weight:600; letter-spacing:0.03em; text-transform:uppercase;">Coupe &amp; dégradés</div>
         <p style="font-size:13.5px; line-height:1.6; color:#D8C9B4; margin:0; max-width:220px;">Précision au millimètre sur les dégradés les plus exigeants.</p>
@@ -160,17 +177,17 @@
       <h2 style="font-family:'Bevan',serif; font-weight:400; font-size:30px; color:#F0E6D8; margin:12px 0 0;">Ce que disent nos clients</h2>
     </div>
     <div class="grid-3" style="max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
-      <div style="background:#1A1613; border:1px solid rgba(184,134,91,0.2); padding:28px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#1A1613; border:1px solid rgba(184,134,91,0.2); padding:28px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="color:#B8865B; font-size:14px; letter-spacing:2px;">★★★★★</div>
         <p style="font-size:13.5px; line-height:1.65; color:#D8C9B4; margin:0;">« Le rasage traditionnel est une expérience à part. Serviette chaude, geste sûr, résultat impeccable. »</p>
         <div style="font-family:'Bevan',serif; font-weight:400; font-size:14px; color:#F0E6D8;">Karim D.</div>
       </div>
-      <div style="background:#1A1613; border:1px solid rgba(184,134,91,0.2); padding:28px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#1A1613; border:1px solid rgba(184,134,91,0.2); padding:28px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="color:#B8865B; font-size:14px; letter-spacing:2px;">★★★★★</div>
         <p style="font-size:13.5px; line-height:1.65; color:#D8C9B4; margin:0;">« Enfin un vrai barbier qui prend le temps. Ma barbe n'a jamais été aussi bien taillée. »</p>
         <div style="font-family:'Bevan',serif; font-weight:400; font-size:14px; color:#F0E6D8;">Julien M.</div>
       </div>
-      <div style="background:#1A1613; border:1px solid rgba(184,134,91,0.2); padding:28px; display:flex; flex-direction:column; gap:14px;">
+      <div class="js-tilt-card" style="background:#1A1613; border:1px solid rgba(184,134,91,0.2); padding:28px; display:flex; flex-direction:column; gap:14px; position:relative; transition:transform .25s ease;">
         <div style="color:#B8865B; font-size:14px; letter-spacing:2px;">★★★★★</div>
         <p style="font-size:13.5px; line-height:1.65; color:#D8C9B4; margin:0;">« L'ambiance vaut le détour à elle seule. On sent le vrai savoir-faire dès qu'on s'assoit. »</p>
         <div style="font-family:'Bevan',serif; font-weight:400; font-size:14px; color:#F0E6D8;">Antoine R.</div>
@@ -211,7 +228,7 @@
             <div style="display:flex; justify-content:space-between; max-width:280px;"><span>Dimanche – Lundi</span><span style="color:#F0E6D8; font-weight:600;">Fermé</span></div>
           </div>
         </div>
-        <a href="https://wa.me/33612345678" target="_blank" rel="noopener" style="text-decoration:none; align-self:flex-start; background:#6B2B2B; color:#F0E6D8; padding:13px 24px; border-radius:2px; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase;">Réserver sur WhatsApp</a>
+        <a href="https://wa.me/33612345678" target="_blank" rel="noopener" class="js-magnetic" style="text-decoration:none; align-self:flex-start; background:#6B2B2B; color:#F0E6D8; padding:13px 24px; border-radius:2px; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase; display:inline-block; transition:transform .2s ease, box-shadow .3s ease;">Réserver sur WhatsApp</a>
       </div>
     </div>
   </section>
@@ -221,7 +238,7 @@
     <div style="max-width:1180px; margin:0 auto; background:#6B2B2B; border:1px solid rgba(184,134,91,0.4); padding:64px 48px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:20px;">
       <h2 style="font-family:'Bevan',serif; font-weight:400; font-size:28px; color:#F0E6D8; margin:0; max-width:520px;">Prêt pour une vraie coupe de barbier ?</h2>
       <p style="font-size:14.5px; color:#E4C9B8; margin:0; max-width:440px;">Réservez votre créneau, on s'occupe du reste.</p>
-      <a href="https://wa.me/33612345678" target="_blank" rel="noopener" style="text-decoration:none; background:#B8865B; color:#1A1613; padding:16px 32px; border-radius:2px; font-weight:700; font-size:14px; letter-spacing:0.03em; text-transform:uppercase; margin-top:8px;">Prendre rendez-vous via WhatsApp</a>
+      <a href="https://wa.me/33612345678" target="_blank" rel="noopener" class="cta-final-btn" style="text-decoration:none; background:#B8865B; color:#1A1613; padding:16px 32px; border-radius:2px; font-weight:700; font-size:14px; letter-spacing:0.03em; text-transform:uppercase; margin-top:8px; display:inline-block; animation:ctaPulse 3s ease-in-out infinite; transition:box-shadow .3s ease;">Prendre rendez-vous via WhatsApp</a>
     </div>
   </section>
 
@@ -253,7 +270,154 @@
     <div style="max-width:1180px; margin:40px auto 0; padding-top:20px; border-top:1px solid rgba(184,134,91,0.15); font-size:12px; color:#8A7A68;">© 2026 Corte &amp; Co. — Barbershop, Paris 11e</div>
   </footer>
 
+  <div class="cursor-dot" style="position:fixed; top:0; left:0; width:14px; height:14px; border-radius:50%; background:#B8865B; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s ease, height .2s ease, background .2s ease, opacity .2s ease; opacity:0.85;"></div>
+
 </div>
+
+<script>
+(function () {
+  var observers = [];
+
+  function initScroll() {
+    var navInner = document.getElementById('navInner');
+    var raf = null;
+    window.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () {
+        var y = window.scrollY || window.pageYOffset;
+        if (navInner) navInner.classList.toggle('scrolled', y > 100);
+        document.querySelectorAll('.js-parallax').forEach(function (el) {
+          var speed = parseFloat(el.getAttribute('data-speed')) || 0.1;
+          el.style.transform = 'translateY(' + (y * speed).toFixed(1) + 'px) rotate(20deg)';
+        });
+        raf = null;
+      });
+    }, { passive: true });
+  }
+
+  function initHeroLetters() {
+    var el = document.querySelector('.js-hero-title');
+    if (!el) return;
+    var text = el.textContent;
+    el.textContent = '';
+    text.split('').forEach(function (ch, i) {
+      var span = document.createElement('span');
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      span.className = 'letter';
+      span.style.animationDelay = (i * 22) + 'ms';
+      el.appendChild(span);
+    });
+  }
+
+  function initCounters() {
+    var bar = document.querySelector('.js-trustbar');
+    if (!bar) return;
+    var nums = bar.querySelectorAll('.js-counter');
+    function animate(el) {
+      var target = parseFloat(el.getAttribute('data-target'));
+      var suffix = el.getAttribute('data-suffix') || '';
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      var start = performance.now();
+      var dur = 1200;
+      function step(now) {
+        var p = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = target * eased;
+        el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val).toLocaleString('fr-FR')) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          nums.forEach(animate);
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    obs.observe(bar);
+    observers.push(obs);
+  }
+
+  function initCurtain() {
+    var photos = Array.prototype.slice.call(document.querySelectorAll('.js-team-photo'));
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var idx = photos.indexOf(entry.target);
+          entry.target.style.transitionDelay = (idx * 150) + 'ms';
+          entry.target.style.clipPath = 'inset(0 0 0% 0)';
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    photos.forEach(function (p) { obs.observe(p); });
+    observers.push(obs);
+  }
+
+  function initMagnetic() {
+    document.querySelectorAll('.js-magnetic').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var dx = (e.clientX - (r.left + r.width / 2)) * 0.3;
+        var dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+        btn.style.transform = 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px)';
+        btn.style.boxShadow = '0 0 24px 4px rgba(184,134,91,0.45)';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transform = 'translate(0,0)';
+        btn.style.boxShadow = 'none';
+      });
+    });
+  }
+
+  function initTilt() {
+    document.querySelectorAll('.js-tilt-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'perspective(700px) rotateX(' + (-py * 8).toFixed(2) + 'deg) rotateY(' + (px * 8).toFixed(2) + 'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      });
+    });
+  }
+
+  function initCursor() {
+    var dot = document.querySelector('.cursor-dot');
+    if (!dot) return;
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+      dot.style.display = 'none';
+      return;
+    }
+    document.addEventListener('mousemove', function (e) {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('.js-magnetic, .js-tilt-card').forEach(function (el) {
+      el.addEventListener('mouseenter', function () {
+        dot.style.width = '38px'; dot.style.height = '38px'; dot.style.background = 'rgba(184,134,91,0.35)';
+      });
+      el.addEventListener('mouseleave', function () {
+        dot.style.width = '14px'; dot.style.height = '14px'; dot.style.background = '#B8865B';
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initScroll();
+    initHeroLetters();
+    initCounters();
+    initCurtain();
+    initMagnetic();
+    initTilt();
+    initCursor();
+  });
+})();
+</script>
 
 </body>
 </html>
