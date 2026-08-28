@@ -11,7 +11,29 @@
   body{margin:0;padding:0;}
   a{color:#B8865B;}
   a:hover{color:#F0E6D8;}
+  .nav-links{display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
+  .burger-btn{display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:40px; height:40px; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0;}
+  .burger-btn span{display:block; width:22px; height:2px; background:#B8865B; border-radius:2px; transition:transform .25s ease, opacity .25s ease;}
+  .burger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger-btn.open span:nth-child(2){opacity:0;}
+  .burger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   @media (max-width: 860px){
+    .burger-btn{display:flex;}
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      background:#1A1613;
+      padding:28px 32px 32px;
+      border-bottom:1px solid rgba(184,134,91,0.25);
+      box-shadow:0 16px 32px rgba(0,0,0,0.3);
+    }
+    .nav-links.open{display:flex;}
     .hero-grid{grid-template-columns:1fr !important;}
     .hero-copy{text-align:center; align-items:center !important;}
     .hero-cta{justify-content:center;}
@@ -45,7 +67,7 @@
   <header style="position:sticky; top:0; z-index:50; background:rgba(26,22,19,0.95); backdrop-filter:blur(6px); border-bottom:1px solid rgba(184,134,91,0.25);">
     <div id="navInner">
       <a href="#accueil" style="font-family:'Bevan',serif; font-weight:400; font-size:22px; color:#B8865B; text-decoration:none; letter-spacing:0.02em;">Corte &amp; Co.</a>
-      <nav style="display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+      <nav class="nav-links">
         <a href="#concept" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Concept</a>
         <a href="#salon" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Le Salon</a>
         <a href="#services" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Prestations</a>
@@ -54,6 +76,9 @@
         <a href="#contact" style="text-decoration:none; color:#F0E6D8; font-weight:500; font-size:14px;">Contact&amp;Accès</a>
         <a href="https://wa.me/33612345678" target="_blank" rel="noopener" class="js-magnetic" style="text-decoration:none; background:#6B2B2B; color:#F0E6D8; padding:10px 20px; border-radius:2px; font-weight:600; font-size:13px; letter-spacing:0.03em; text-transform:uppercase; display:inline-block; transition:transform .2s ease, box-shadow .3s ease;">Réserver</a>
       </nav>
+      <button class="burger-btn" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -454,6 +479,26 @@
     initCursor();
   });
 })();
+</script>
+
+<script>
+  (function(){
+    var burgerBtn = document.querySelector('.burger-btn');
+    var navLinks = document.querySelector('.nav-links');
+    if(!burgerBtn || !navLinks) return;
+    burgerBtn.addEventListener('click', function(){
+      var isOpen = navLinks.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navLinks.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        navLinks.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
 </script>
 
 </body>
